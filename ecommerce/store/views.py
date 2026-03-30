@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 
-from .serializer import ProductSerializer,CategorySerializer,CustomerSerializer,OrderSerializer
-from .models import Products,Orders,Customer,Category
+from .serializer import ProductSerializer,CategorySerializer,CustomerSerializer,OrderSerializer,CartSerializer
+from .models import Products,Orders,Customer,Category,Cart
 
 
 from rest_framework.response import Response
@@ -54,3 +54,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset=Orders.objects.all()
     serializer_class=OrderSerializer
 
+class CartViewSet(viewsets.ModelViewSet):
+
+    queryset=Cart.objects.all()
+    serializer_class=CartSerializer

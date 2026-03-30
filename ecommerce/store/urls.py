@@ -14,6 +14,7 @@ router.register('products',views.ProductViewSet)
 router.register('customer',views.CustomerViewSet)
 router.register('order',views.OrderViewSet)
 router.register('category',views.CategoryViewSet)
+router.register('cart',views.CartViewSet)
 
 urlpatterns=[
     path('',views.api_root),

@@ -7,7 +7,8 @@ class Category(models.Model):
     name=models.CharField(max_length=50)
     permission_class=[IsAdminUser]
    
-    
+    def __str__(self):
+        return self.name
     
 
 from django.contrib.auth.models import User
@@ -19,7 +20,7 @@ class Customer(models.Model):
     phone=models.CharField(max_length=10)
     email=models.EmailField(unique=True)
     password=models.CharField(max_length=100)
-
+   
 
     
 
@@ -31,7 +32,8 @@ class Products(models.Model):
     description=models.TextField()
     permission_classes =[IsAuthenticated]
 
- 
+    def __str__(self):
+        return self.name
 
 class Orders(models.Model):
     product=models.ForeignKey(Products,on_delete=models.CASCADE)
@@ -43,4 +45,19 @@ class Orders(models.Model):
     status=models.BooleanField(default=False)
     permission_classes=[IsAuthenticated]
 
-   
+    def __str__(self):
+        return self.product.name 
+
+
+
+class Cart(models.Model):
+    products=models.ForeignKey(Orders,on_delete=models.CASCADE)
+    quantity=models.PositiveIntegerField(default=1)
+    prices=models.IntegerField()
+
+
+    def __str__(self):
+        return f"{self.products},{self.prices}"
+    
+
+    
